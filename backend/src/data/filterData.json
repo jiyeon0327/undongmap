@@ -1,0 +1,18 @@
+{
+    "sido": [
+        { "code": "11", "name": "서울특별시", "latitude": 37.5665, "longitude": 126.9780 }
+    ],
+    "sigungu": [
+        { "code": "11680", "name": "강남구", "parentCode": "11", "latitude": 37.5013, "longitude": 127.0236 },
+        { "code": "11650", "name": "서초구", "parentCode": "11", "latitude": 37.4806, "longitude": 127.0113 },
+        { "code": "11710", "name": "송파구", "parentCode": "11", "latitude": 37.5103, "longitude": 127.1002 }
+    ],
+    "dong": [
+        { "code": "1168010100", "name": "역삼동", "parentCode": "11680", "latitude": 37.5000, "longitude": 127.0360 }
+    ],
+    "category": [
+        { "code": "GYM", "name": "헬스" },
+        { "code": "PILATES", "name": "필라테스" },
+        { "code": "YOGA", "name": "요가" }
+    ]
+  }

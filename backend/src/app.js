@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-
+const filterRoutes = require('./routes/filterRoutes');
+const mapRoutes = require('./routes/mapRoutes');
+const errorHandler = require('./middlewares/errorHandler');
 const app = express();
 
 // 프론트엔드(React)에서 API를 호출할 수 있도록 CORS 허용
@@ -12,5 +14,10 @@ app.use(express.json());
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
+
+app.use('/api/filters', filterRoutes);
+app.use('/api', mapRoutes);
+app.use(errorHandler);
+
 
 module.exports = app;
