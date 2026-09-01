@@ -16,4 +16,11 @@ npm run dev
 ```
 
 서버 주소: `http://localhost:3000`  
-헬스 체크: `GET /health`
+헬스 체크: `GET /health` 
+
+### API 
+
+검색 필터 옵션 조회 API: 	GET	/api/filters/options
+맵 표출 API:    GET	/api/facilities
+시설 상세 정보 조회 API: GET	/api/facilities/{facilityId}
+실시간 인기 검색 순위 API:	GET	/api/facilities/ranking
