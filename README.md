@@ -19,7 +19,6 @@ npm run dev
 헬스 체크: `GET /health` 
 
 ### API 
-
 검색 필터 옵션 조회 API: 	GET	/api/filters/options
 맵 표출 API:    GET	/api/facilities
 시설 상세 정보 조회 API: GET	/api/facilities/{facilityId}
