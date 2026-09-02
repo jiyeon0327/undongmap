@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "antd": "^6.6.2",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-kakao-maps-sdk": "^1.2.2"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",

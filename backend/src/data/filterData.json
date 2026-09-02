@@ -11,8 +11,15 @@
         { "code": "1168010100", "name": "역삼동", "parentCode": "11680", "latitude": 37.5000, "longitude": 127.0360 }
     ],
     "category": [
-        { "code": "GYM", "name": "헬스" },
+        { "code": "GYM", "name": "헬스장" },
+        { "code": "YOGA", "name": "요가원" },
         { "code": "PILATES", "name": "필라테스" },
-        { "code": "YOGA", "name": "요가" }
+        { "code": "CROSSFIT", "name": "크로스핏" },
+        { "code": "KICKBOXING", "name": "킥복싱" },
+        { "code": "BOXING", "name": "복싱" },
+        { "code": "SWIM", "name": "수영장" },
+        { "code": "CYCLE", "name": "실내 사이클" },
+        { "code": "TAEKWONDO", "name": "태권도" },
+        { "code": "DANCE", "name": "댄스 스튜디오" }
     ]
-  }
+}

@@ -1,0 +1,275 @@
+.map-page {
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: #f3f4f6;
+  overflow: hidden;
+}
+
+.map-page__header {
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 56px;
+  padding: 0 16px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.map-page__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.map-page__location {
+  max-width: 52%;
+}
+
+.map-page__body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.map-page__map {
+  width: calc(100% - 280px);
+  height: 100%;
+}
+
+.map-page__count {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.marker-popup {
+  position: relative;
+  width: 280px;
+  padding: 16px 16px 14px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.18);
+}
+
+.marker-popup::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  transform: translateX(-50%) rotate(45deg);
+  box-shadow: 4px 4px 8px rgba(15, 23, 42, 0.08);
+}
+
+.marker-popup__close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.marker-popup__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-right: 20px;
+}
+
+.marker-popup__emoji {
+  font-size: 22px;
+}
+
+.marker-popup__name {
+  display: block;
+  font-size: 16px;
+  color: #111827;
+}
+
+.marker-popup__category {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #f97316;
+}
+
+.marker-popup__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.marker-popup__label {
+  color: #9ca3af;
+  min-width: 56px;
+}
+
+.marker-popup__directions {
+  margin-top: 10px;
+  height: 40px;
+  font-weight: 600;
+}
+
+.map-page__sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 100%;
+  background: #fff;
+  border-left: 1px solid #e5e7eb;
+}
+
+.map-page__tabs.ant-tabs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.map-page__tabs .ant-tabs-nav {
+  margin: 0;
+  padding: 0;
+}
+
+.map-page__tabs .ant-tabs-nav::before {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.map-page__tabs .ant-tabs-nav-wrap {
+  width: 100%;
+}
+
+.map-page__tabs .ant-tabs-nav-list {
+  width: 100%;
+}
+
+.map-page__tabs .ant-tabs-tab {
+  flex: 1 1 50%;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 14px 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.map-page__tabs .ant-tabs-tab-btn {
+  width: 100%;
+  text-align: center;
+}
+
+.map-page__tabs .ant-tabs-ink-bar {
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+
+.map-page__tabs .ant-tabs-content-holder,
+.map-page__tabs .ant-tabs-content,
+.map-page__tabs .ant-tabs-tabpane {
+  height: 100%;
+}
+
+.map-page__tab-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.map-page__list {
+  flex: 1;
+  margin: 0;
+  padding: 8px 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.map-page__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.map-page__item:hover {
+  background: #f8fafc;
+}
+
+.map-page__item.is-active {
+  background: #e8f3ff;
+  color: #1677ff;
+  font-weight: 600;
+}
+
+.map-page__icon {
+  font-size: 16px;
+}
+
+.map-page__dot {
+  margin-left: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1677ff;
+}
+
+.map-page__rank {
+  width: 22px;
+  color: #9ca3af;
+  font-weight: 700;
+}
+
+.map-page__footer {
+  padding: 12px 16px 16px;
+  border-top: 1px solid #f3f4f6;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .map-page__map {
+    width: 100%;
+  }
+
+  .map-page__sidebar {
+    width: 100%;
+    height: 42%;
+    top: auto;
+    bottom: 0;
+    border-left: none;
+    border-top: 1px solid #e5e7eb;
+  }
+
+}
