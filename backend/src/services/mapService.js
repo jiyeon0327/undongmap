@@ -96,12 +96,23 @@ async function searchKakaoFacilities(query, longitude, latitude) {
   return places.slice(0, MAX_FACILITY_COUNT);
 }
 
+// 카카오가 준 상세 URL을 쓰고, 없으면 장소 ID로 상세 페이지를 만든다
+function buildPlaceUrl(place) {
+  if (place.place_url) {
+    return place.place_url;
+  }
+  if (place.id) {
+    return `https://place.map.kakao.com/${place.id}`;
+  }
+  return null;
+}
+
 function toFacility(place, categoryCode) {
   return {
     facilityId: place.id,
     name: place.place_name,
     phone: place.phone ? place.phone : null,
-    businessHours: null,
+    placeUrl: buildPlaceUrl(place),
     categoryCode,
     lat: Number(place.y),
     lng: Number(place.x),
@@ -113,7 +124,7 @@ function toFacilityDetail(place, categoryCode, sigunguCode) {
     facilityId: place.id,
     name: place.place_name,
     phone: place.phone ? place.phone : null,
-    businessHours: null,
+    placeUrl: buildPlaceUrl(place),
     categoryCode,
     sigunguCode,
     lat: Number(place.y),
