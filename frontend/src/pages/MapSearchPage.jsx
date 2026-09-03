@@ -211,7 +211,6 @@ function MapSearchPage({ region, onBack }) {
         <Button type="text" onClick={onBack}>
           ← 뒤로
         </Button>
-        <div className="map-page__brand">운동맵</div>
         <Button className="map-page__location" shape="round" onClick={onBack}>
           📍 {buildRegionLabel(region)}
         </Button>

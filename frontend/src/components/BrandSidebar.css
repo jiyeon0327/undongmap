@@ -1,0 +1,79 @@
+.brand-sidebar {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 280px;
+  height: 100%;
+  padding: 16px 12px;
+  background: #fff;
+  border-right: 1px solid #e5e7eb;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: width 0.2s ease, padding 0.2s ease;
+}
+
+.brand-sidebar.is-collapsed {
+  width: 40px;
+  padding: 16px 0;
+  align-items: center;
+}
+
+.brand-sidebar__toggle {
+  align-self: flex-end;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #fff;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.brand-sidebar.is-collapsed .brand-sidebar__toggle {
+  align-self: center;
+}
+
+.brand-sidebar__toggle:hover {
+  background: #f3f4f6;
+}
+
+.brand-sidebar__contact {
+  display: block;
+  width: 100%;
+  margin-top: auto;
+  padding: 8px 4px 0;
+  color: #9ca3af;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-sidebar__contact:hover {
+  color: #111827;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .brand-sidebar {
+    width: 100%;
+    padding: 8px 16px;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    align-items: flex-end;
+  }
+
+  .brand-sidebar.is-collapsed {
+    width: 100%;
+    padding: 8px 16px;
+  }
+}

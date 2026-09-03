@@ -98,16 +98,7 @@ function RegionSelectPage({ onConfirm }) {
 
   return (
     <div className="region-page">
-      <div className="region-page__brand">
-        <span className="region-page__emoji" aria-hidden="true">
-          🏋️
-        </span>
-        <h1 className="region-page__logo">운동맵</h1>
-        <span className="region-page__emoji" aria-hidden="true">
-          🏃‍♀️
-        </span>
-      </div>
-
+      <main className="region-page__main">
       <section className="region-page__card">
         <h2 className="region-page__title">지역 선택</h2>
         <p className="region-page__desc">운동 시설을 찾을 지역을 선택해주세요</p>
@@ -170,6 +161,7 @@ function RegionSelectPage({ onConfirm }) {
           확인
         </Button>
       </section>
+      </main>
     </div>
   )
 }

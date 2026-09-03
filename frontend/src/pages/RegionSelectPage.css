@@ -1,7 +1,8 @@
 .region-page {
-  min-height: 100svh;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 32px 16px;
@@ -9,25 +10,11 @@
   box-sizing: border-box;
 }
 
-.region-page__brand {
+.region-page__main {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-
-.region-page__emoji {
-  font-size: 36px;
-  line-height: 1;
-}
-
-.region-page__logo {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: #111827;
+  width: 100%;
 }
 
 .region-page__card {
@@ -71,4 +58,12 @@
   height: 48px;
   font-size: 16px;
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .region-page {
+    position: static;
+    flex: 1;
+    min-height: 0;
+  }
 }

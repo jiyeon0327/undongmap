@@ -1,5 +1,8 @@
 .map-page {
-  height: 100svh;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background: #f3f4f6;
@@ -16,15 +19,6 @@
   padding: 0 16px;
   background: #fff;
   border-bottom: 1px solid #e5e7eb;
-}
-
-.map-page__brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 800;
-  color: #111827;
 }
 
 .map-page__location {
