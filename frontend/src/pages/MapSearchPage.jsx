@@ -6,7 +6,6 @@ import './MapSearchPage.css'
 const API_BASE = 'http://localhost:3000/api'
 
 const CATEGORY_ICONS = {
-  ALL: '📍',
   GYM: '🏋️',
   YOGA: '🧘',
   PILATES: '🤸',
@@ -136,7 +135,7 @@ function FocusSelectedFacility({ facility }) {
 
 function MapSearchPage({ region, onBack }) {
   const [categoryList, setCategoryList] = useState([])
-  const [selectedCategoryCode, setSelectedCategoryCode] = useState(null)
+  const [selectedCategoryCode, setSelectedCategoryCode] = useState('GYM')
   const [facilityList, setFacilityList] = useState([])
   const [rankingList, setRankingList] = useState([])
   const [selectedFacility, setSelectedFacility] = useState(null)
@@ -156,13 +155,12 @@ function MapSearchPage({ region, onBack }) {
       .catch((error) => console.error(error))
   }, [])
 
-  // 지역이 정해지면 시설을 바로 검색한다. 카테고리를 바꾸면 다시 검색한다.
+  // 지역·카테고리가 정해지면 시설을 검색한다. 카테고리를 바꾸면 다시 검색한다.
   useEffect(() => {
-    if (!region?.sidoCode || !region?.sigunguCode) return
+    if (!region?.sidoCode || !region?.sigunguCode || !selectedCategoryCode) return
 
-    let url = `${API_BASE}/facilities?sidoCode=${region.sidoCode}&sigunguCode=${region.sigunguCode}`
+    let url = `${API_BASE}/facilities?sidoCode=${region.sidoCode}&sigunguCode=${region.sigunguCode}&categoryCode=${selectedCategoryCode}`
     if (region.dongCode) url += `&dongCode=${region.dongCode}`
-    if (selectedCategoryCode) url += `&categoryCode=${selectedCategoryCode}`
 
     fetch(url, { cache: 'no-store' })
       .then((response) => {
@@ -204,9 +202,8 @@ function MapSearchPage({ region, onBack }) {
     ? { lat: facilityList[0].lat, lng: facilityList[0].lng }
     : SEOUL_CENTER
 
-  const selectedCategoryName = selectedCategoryCode
-    ? categoryList.find((category) => category.code === selectedCategoryCode)?.name
-    : '전체'
+  const selectedCategoryName =
+    categoryList.find((category) => category.code === selectedCategoryCode)?.name || '헬스장'
 
   return (
     <div className="map-page">
@@ -222,7 +219,7 @@ function MapSearchPage({ region, onBack }) {
 
       <div className="map-page__body">
         <Map
-          key={`${region.sigunguCode}-${region.dongCode || ''}-${selectedCategoryCode || 'all'}`}
+          key={`${region.sigunguCode}-${region.dongCode || ''}-${selectedCategoryCode}`}
           center={mapCenter}
           className="map-page__map"
           style={{ width: 'calc(100% - 280px)', height: '100%' }}
@@ -273,17 +270,6 @@ function MapSearchPage({ region, onBack }) {
                 children: (
                   <div className="map-page__tab-body">
                     <ul className="map-page__list">
-                      <li>
-                        <button
-                          type="button"
-                          className={`map-page__item${selectedCategoryCode ? '' : ' is-active'}`}
-                          onClick={() => setSelectedCategoryCode(null)}
-                        >
-                          <span className="map-page__icon">{CATEGORY_ICONS.ALL}</span>
-                          전체
-                          {!selectedCategoryCode && <span className="map-page__dot" />}
-                        </button>
-                      </li>
                       {categoryList.map((category) => (
                         <li key={category.code}>
                           <button
@@ -303,7 +289,7 @@ function MapSearchPage({ region, onBack }) {
                       ))}
                     </ul>
                     <div className="map-page__footer">
-                      {selectedCategoryCode ? `${selectedCategoryName} 표시 중` : '전체 표시 중'}
+                      {`${selectedCategoryName} 표시 중`}
                     </div>
                   </div>
                 ),

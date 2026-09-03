@@ -20,6 +20,9 @@ function assertValidMapRequest(sidoCode, sigunguCode, dongCode, categoryCode) {
   if (!sidoCode || !sigunguCode) {
     throw createHttpError(400, 'sidoCode와 sigunguCode는 필수입니다.');
   }
+  if (!categoryCode) {
+    throw createHttpError(400, 'categoryCode는 필수입니다.');
+  }
 
   const sido = findByCode(filterData.sido, sidoCode);
   const sigungu = findByCode(filterData.sigungu, sigunguCode);
@@ -39,12 +42,9 @@ function assertValidMapRequest(sidoCode, sigunguCode, dongCode, categoryCode) {
     }
   }
 
-  let category = null;
-  if (categoryCode) {
-    category = findByCode(filterData.category, categoryCode);
-    if (!category) {
-      throw createHttpError(400, 'categoryCode가 올바르지 않습니다.');
-    }
+  const category = findByCode(filterData.category, categoryCode);
+  if (!category) {
+    throw createHttpError(400, 'categoryCode가 올바르지 않습니다.');
   }
 
   return { sido, sigungu, dong, category };
@@ -142,15 +142,14 @@ async function getFacilities(sidoCode, sigunguCode, dongCode, categoryCode) {
 
   // 동이 있으면 동 좌표, 없으면 시/군/구 좌표로 검색
   const searchCenter = dong || sigungu;
-  const searchQuery = category ? category.name : '운동';
 
   const kakaoPlaces = await searchKakaoFacilities(
-    searchQuery,
+    category.name,
     searchCenter.longitude,
     searchCenter.latitude,
   );
 
-  const selectedCategoryCode = category ? category.code : null;
+  const selectedCategoryCode = category.code;
   const facilities = kakaoPlaces.map((place) => {
     setFacilityCache(place.id, toFacilityDetail(place, selectedCategoryCode, sigungu.code));
     return toFacility(place, selectedCategoryCode);
