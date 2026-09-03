@@ -25,12 +25,30 @@ function buildRegionLabel(region) {
   return [region.sidoName, region.sigunguName, region.dongName].filter(Boolean).join(' ')
 }
 
+// 백엔드가 준 카카오 상세 URL을 쓰고, 없으면 장소 ID로 상세 페이지를 만든다
+function buildKakaoPlaceUrl(facility) {
+  if (facility.placeUrl) {
+    return facility.placeUrl
+  }
+  if (facility.facilityId) {
+    return `https://place.map.kakao.com/${facility.facilityId}`
+  }
+  return null
+}
+
 function buildKakaoDirectionsUrl(facility) {
+  if (facility.lat == null || facility.lng == null) {
+    return null
+  }
+
   const name = encodeURIComponent(facility.name || '운동시설')
   return `https://map.kakao.com/link/to/${name},${facility.lat},${facility.lng}`
 }
 
 function FacilityPopup({ facility, categoryName, onClose }) {
+  const kakaoPlaceUrl = buildKakaoPlaceUrl(facility)
+  const kakaoDirectionsUrl = buildKakaoDirectionsUrl(facility)
+
   return (
     <div
       className="marker-popup"
@@ -56,23 +74,41 @@ function FacilityPopup({ facility, categoryName, onClose }) {
         <span className="marker-popup__label">전화번호</span>
         <span>{facility.phone || '정보 없음'}</span>
       </div>
-      <div className="marker-popup__row">
-        <span>🕒</span>
-        <span className="marker-popup__label">운영시간</span>
-        <span>{facility.businessHours || '정보 없음'}</span>
-      </div>
 
-      <Button
-        type="primary"
-        block
-        shape="round"
-        className="marker-popup__directions"
-        href={buildKakaoDirectionsUrl(facility)}
-        target="_blank"
-        rel="noreferrer"
-      >
-        길찾기
-      </Button>
+      <div className="marker-popup__actions">
+        {kakaoPlaceUrl ? (
+          <Button
+            block
+            shape="round"
+            className="marker-popup__hours"
+            href={kakaoPlaceUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            운영시간 확인하러 가기 ↗
+          </Button>
+        ) : (
+          <div className="marker-popup__row">
+            <span>🕒</span>
+            <span className="marker-popup__label">운영시간</span>
+            <span>정보 없음</span>
+          </div>
+        )}
+
+        {kakaoDirectionsUrl && (
+          <Button
+            type="primary"
+            block
+            shape="round"
+            className="marker-popup__directions"
+            href={kakaoDirectionsUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            길찾기
+          </Button>
+        )}
+      </div>
     </div>
   )
 }

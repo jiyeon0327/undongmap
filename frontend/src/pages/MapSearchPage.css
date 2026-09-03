@@ -59,11 +59,17 @@
 
 .marker-popup {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   width: 280px;
+  max-width: 280px;
   padding: 16px 16px 14px;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.18);
+  /* 카카오 오버레이가 nowrap이라 버튼이 팝업 옆으로 새는 것을 막는다 */
+  white-space: normal;
 }
 
 .marker-popup::after {
@@ -128,10 +134,26 @@
   min-width: 56px;
 }
 
+.marker-popup__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.marker-popup__hours,
 .marker-popup__directions {
-  margin-top: 10px;
+  width: 100%;
   height: 40px;
+  margin: 0;
   font-weight: 600;
+}
+
+.marker-popup__actions .ant-btn {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .map-page__sidebar {
